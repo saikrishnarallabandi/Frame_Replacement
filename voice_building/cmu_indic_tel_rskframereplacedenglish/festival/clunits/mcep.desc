@@ -1,0 +1,321 @@
+(
+( occurid vector )
+( R:mcep_link.parent.name 
+9r_1 9r_2 9r_3 9r=_1 9r=_2 9r=_3 A_1 A_2 A_3 A:_1 A:_2 A:_3 J_1 J_2 J_3 N_1 N_2 N_3 aI_1 aI_2 aI_3 aU_1 aU_2 aU_3 b_1 b_2 b_3 bh_1 bh_2 bh_3 c_1 c_2 c_3 ch_1 ch_2 ch_3 c}_1 c}_2 c}_3 dB_1 dB_2 dB_3 dBh_1 dBh_2 dBh_3 dR_1 dR_2 dR_3 dr_1 dr_2 dr_3 e_1 e_2 e_3 e:_1 e:_2 e:_3 g_1 g_2 g_3 gh_1 gh_2 gh_3 hv_1 hv_2 hv_3 i_1 i_2 i_3 i:_1 i:_2 i:_3 j_1 j_2 j_3 k_1 k_2 k_3 kh_1 kh_2 kh_3 l_1 l_2 l_3 lr_1 lr_2 lr_3 m_1 m_2 m_3 nB_1 nB_2 nB_3 nr_1 nr_2 nr_3 n~_1 n~_2 n~_3 o_1 o_2 o_3 o:_1 o:_2 o:_3 p_1 p_2 p_3 pau_1 pau_2 pau_3 ph_1 ph_2 ph_3 s_1 s_2 s_3 pau_5 tB_1 tB_2 tB_3 tBh_1 tBh_2 tBh_3 tR_1 tR_2 tR_3 tr_1 tr_2 tr_3 u_1 u_2 u_3 u:_1 u:_2 u:_3 v_1 v_2 v_3 
+"0"
+)
+( R:mcep_link.parent.R:HMMstate.p.name
+9r_1 9r_2 9r_3 9r=_1 9r=_2 9r=_3 A_1 A_2 A_3 A:_1 A:_2 A:_3 J_1 J_2 J_3 N_1 N_2 N_3 aI_1 aI_2 aI_3 aU_1 aU_2 aU_3 b_1 b_2 b_3 bh_1 bh_2 bh_3 c_1 c_2 c_3 ch_1 ch_2 ch_3 c}_1 c}_2 c}_3 dB_1 dB_2 dB_3 dBh_1 dBh_2 dBh_3 dR_1 dR_2 dR_3 dr_1 dr_2 dr_3 e_1 e_2 e_3 e:_1 e:_2 e:_3 g_1 g_2 g_3 gh_1 gh_2 gh_3 hv_1 hv_2 hv_3 i_1 i_2 i_3 i:_1 i:_2 i:_3 j_1 j_2 j_3 k_1 k_2 k_3 kh_1 kh_2 kh_3 l_1 l_2 l_3 lr_1 lr_2 lr_3 m_1 m_2 m_3 nB_1 nB_2 nB_3 nr_1 nr_2 nr_3 n~_1 n~_2 n~_3 o_1 o_2 o_3 o:_1 o:_2 o:_3 p_1 p_2 p_3 pau_1 pau_2 pau_3 ph_1 ph_2 ph_3 s_1 s_2 s_3 pau_5 tB_1 tB_2 tB_3 tBh_1 tBh_2 tBh_3 tR_1 tR_2 tR_3 tr_1 tr_2 tr_3 u_1 u_2 u_3 u:_1 u:_2 u:_3 v_1 v_2 v_3 
+"0"
+)
+( R:mcep_link.parent.R:HMMstate.n.name
+9r_1 9r_2 9r_3 9r=_1 9r=_2 9r=_3 A_1 A_2 A_3 A:_1 A:_2 A:_3 J_1 J_2 J_3 N_1 N_2 N_3 aI_1 aI_2 aI_3 aU_1 aU_2 aU_3 b_1 b_2 b_3 bh_1 bh_2 bh_3 c_1 c_2 c_3 ch_1 ch_2 ch_3 c}_1 c}_2 c}_3 dB_1 dB_2 dB_3 dBh_1 dBh_2 dBh_3 dR_1 dR_2 dR_3 dr_1 dr_2 dr_3 e_1 e_2 e_3 e:_1 e:_2 e:_3 g_1 g_2 g_3 gh_1 gh_2 gh_3 hv_1 hv_2 hv_3 i_1 i_2 i_3 i:_1 i:_2 i:_3 j_1 j_2 j_3 k_1 k_2 k_3 kh_1 kh_2 kh_3 l_1 l_2 l_3 lr_1 lr_2 lr_3 m_1 m_2 m_3 nB_1 nB_2 nB_3 nr_1 nr_2 nr_3 n~_1 n~_2 n~_3 o_1 o_2 o_3 o:_1 o:_2 o:_3 p_1 p_2 p_3 pau_1 pau_2 pau_3 ph_1 ph_2 ph_3 s_1 s_2 s_3 pau_5 tB_1 tB_2 tB_3 tBh_1 tBh_2 tBh_3 tR_1 tR_2 tR_3 tr_1 tr_2 tr_3 u_1 u_2 u_3 u:_1 u:_2 u:_3 v_1 v_2 v_3 
+"0"
+)
+( R:mcep_link.parent.R:segstate.parent.p.name
+9r 9r= A A: J N aI aU b bh c ch c} dB dBh dR dr e e: g gh hv i i: j k kh l lr m nB nr n~ o o: p pau ph s ssil tB tBh tR tr u u: v 
+"0"
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_vc
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_ctype
+0
+a
+f
+l
+n
+r
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_vheight
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_vlng
+0
+a
+d
+l
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_vfront
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_vrnd
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_cplace
+0
+a
+b
+d
+l
+p
+v
+g
+-
+)
+( R:mcep_link.parent.R:segstate.parent.p.ph_cvox
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.n.name ignore
+9r 9r= A A: J N aI aU b bh c ch c} dB dBh dR dr e e: g gh hv i i: j k kh l lr m nB nr n~ o o: p pau ph s ssil tB tBh tR tr u u: v 
+"0"
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_vc
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_ctype
+0
+a
+f
+l
+n
+r
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_vheight
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_vlng
+0
+a
+d
+l
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_vfront
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_vrnd
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_cplace
+0
+a
+b
+d
+l
+p
+v
+g
+-
+)
+( R:mcep_link.parent.R:segstate.parent.n.ph_cvox
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.segment_duration ignore float)
+( R:mcep_link.parent.lisp_cg_duration float)
+( R:mcep_link.parent.R:segstate.n.lisp_cg_duration float)
+( R:mcep_link.parent.R:segstate.p.lisp_cg_duration float)
+( lisp_cg_state_pos b m e)
+( lisp_cg_state_place float)
+( lisp_cg_state_index float)
+( lisp_cg_state_rindex float)
+( lisp_cg_phone_place float)
+( lisp_cg_phone_index float)
+( lisp_cg_phone_rindex float)
+( lisp_cg_position_in_sentence ignore float)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Phrase.parent.lisp_cg_find_phrase_number float)
+( lisp_cg_position_in_phrasep float)
+( lisp_cg_position_in_phrase float)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.stress float)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.R:Syllable.p.stress
+float
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.R:Syllable.n.stress
+float
+)
+( R:mcep_link.parent.R:segstate.parent.seg_onsetcoda
+0
+coda
+onset
+)
+( R:mcep_link.parent.R:segstate.parent.n.seg_onsetcoda 
+0
+coda
+onset
+)
+( R:mcep_link.parent.R:segstate.parent.p.seg_onsetcoda
+0
+coda
+onset
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.accented
+0
+1
+)
+( R:mcep_link.parent.R:segstate.parent.pos_in_syl float)
+( R:mcep_link.parent.R:segstate.parent.syl_initial 
+0
+1
+)
+( R:mcep_link.parent.R:segstate.parent.syl_final
+0
+1
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.lisp_cg_break
+0
+1
+3
+4
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.R:Syllable.p.lisp_cg_break
+0
+1
+3
+4
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.position_type
+0
+initial
+single
+final
+mid
+)
+( R:mcep_link.parent.R:segstate.parent.pp.name ignore
+9r 9r= A A: J N aI aU b bh c ch c} dB dBh dR dr e e: g gh hv i i: j k kh l lr m nB nr n~ o o: p pau ph s ssil tB tBh tR tr u u: v 
+"0"
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_vc ignore
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_ctype ignore
+0
+a
+f
+l
+n
+r
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_vheight ignore
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_vlng ignore
+0
+a
+d
+l
+s
+-
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_vfront ignore
+0
+1
+2
+3
+-
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_vrnd ignore
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_cplace ignore
+0
+a
+b
+d
+g
+l
+p
+v
+-
+)
+( R:mcep_link.parent.R:segstate.parent.pp.ph_cvox ignore
++
+-
+0
+)
+( R:mcep_link.parent.R:segstate.parent.n.lisp_is_pau 0 1)
+( R:mcep_link.parent.R:segstate.parent.p.lisp_is_pau 0 1)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.gpos
+0
+aux
+cc
+content
+det
+in
+md
+pps
+to
+wp
+punc
+tag001 tag002 tag003 tag004 tag005 tag006 tag007 tag008 tag009 tag010
+tag011 tag012 tag013 tag014 tag015 tag016 tag017 tag018 tag019 tag020
+tag021 tag022 tag023 tag024 tag025 tag026 tag027 tag028 tag029 tag030
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Word.p.gpos
+0
+aux
+cc
+content
+det
+in
+md
+pps
+to
+wp
+punc
+tag001 tag002 tag003 tag004 tag005 tag006 tag007 tag008 tag009 tag010
+tag011 tag012 tag013 tag014 tag015 tag016 tag017 tag018 tag019 tag020
+tag021 tag022 tag023 tag024 tag025 tag026 tag027 tag028 tag029 tag030
+)
+( R:mcep_link.parent.R:segstate.parent.R:SylStructure.parent.parent.R:Word.n.gpos
+0
+aux
+cc
+content
+det
+in
+md
+pps
+to
+wp
+punc
+tag001 tag002 tag003 tag004 tag005 tag006 tag007 tag008 tag009 tag010
+tag011 tag012 tag013 tag014 tag015 tag016 tag017 tag018 tag019 tag020
+tag021 tag022 tag023 tag024 tag025 tag026 tag027 tag028 tag029 tag030
+
+)
+)
