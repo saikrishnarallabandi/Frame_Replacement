@@ -30,22 +30,6 @@
 ##  THIS SOFTWARE.                                                       ##
 ##                                                                       ##
 ###########################################################################
-##                                                                       ##
-##  Author: Alan W Black (awb@cs.cmu.edu) Nov 2005                       ##
-##                                                                       ##
-###########################################################################
-##                                                                       ##
-##  Build a clustergen voice (sort of HMM-generation synthesis).         ##
-##                                                                       ##
-##  With no arguments is does (mostly) the right thing                   ##
-##                                                                       ##
-##  Its assumes there is already a labeled voice with a set of           ##
-##  utterances.  It naively believes it was labeled with ehmm and the    ##
-##  state names are available from that (and voicing information)        ##
-##                                                                       ##
-##  Does deltas by default (and later mlpg)                              ##
-##                                                                       ##
-###########################################################################
 
 LANG=C; export LANG
 
