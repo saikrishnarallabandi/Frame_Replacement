@@ -4,8 +4,9 @@ from sklearn.neighbors import KDTree
 import numpy as np
 import cPickle
 
-hindi_file = 'hindi.mgc'
-classifier_name = 'hindi_KDTree.pkl'
+hindi_file = 'hindi_50.sp'
+#hindi_fullfile = 'hindi.sp'
+classifier_name = 'hindi_KDTree_sp.pkl'
 
 ### I find that sometimes np.loadtxt fails. 
 hindi_frames = []
@@ -15,7 +16,15 @@ for line in f:
     line = line.split('\n')[0].split()
     hindi_frames.append(np.asarray(line))
 f.close()
-
+'''
+hindi_fullframes = []
+f = open(hindi_fullfile)
+#hindi_frames = np.loadtxt(hindi_file)
+for line in f:
+    line = line.split('\n')[0].split()
+    hindi_fullframes.append(np.asarray(line))
+f.close()
+'''
 def get_hinditree(hindi_file):
    if os.path.exists(classifier_name):
      with open(classifier_name, 'rb') as fid:
@@ -29,10 +38,10 @@ def get_hinditree(hindi_file):
          cPickle.dump(kdt, fid)    
    return kdt
 
-english_folder = '../feats/mgcep'
-output_folder = '../feats/mgcep_replaced'
+english_folder = '../feats/iitm_sp'
+output_folder = '../feats/iitm_sp_replaced'
 files = sorted(os.listdir(english_folder))
-get_hinditree()
+hindi_tree = get_hinditree(hindi_file)
 
 for file in files:
   if 'arctic' in file:
@@ -47,5 +56,5 @@ for file in files:
     for i in index:
         g.write(' '.join(k for k in hindi_frames[i]) + '\n')
     g.close()     
-   
-   
+    print index   
+    print len(index)   

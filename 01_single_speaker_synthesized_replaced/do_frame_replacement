@@ -1,0 +1,195 @@
+#!/bin/bash
+#####################################################-*-mode:shell-script-*-
+##                                                                       ##
+##                     Carnegie Mellon University                        ##
+##                      Copyright (c) 2005-2006                          ##
+##                        All Rights Reserved.                           ##
+##                                                                       ##
+##  Permission is hereby granted, free of charge, to use and distribute  ##
+##  this software and its documentation without restriction, including   ##
+##  without limitation the rights to use, copy, modify, merge, publish,  ##
+##  distribute, sublicense, and/or sell copies of this work, and to      ##
+##  permit persons to whom this work is furnished to do so, subject to   ##
+##  the following conditions:                                            ##
+##   1. The code must retain the above copyright notice, this list of    ##
+##      conditions and the following disclaimer.                         ##
+##   2. Any modifications must be clearly marked as such.                ##
+##   3. Original authors' names are not deleted.                         ##
+##   4. The authors' names are not used to endorse or promote products   ##
+##      derived from this software without specific prior written        ##
+##      permission.                                                      ##
+##                                                                       ##
+##  CARNEGIE MELLON UNIVERSITY AND THE CONTRIBUTORS TO THIS WORK         ##
+##  DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING      ##
+##  ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT   ##
+##  SHALL CARNEGIE MELLON UNIVERSITY NOR THE CONTRIBUTORS BE LIABLE      ##
+##  FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    ##
+##  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN   ##
+##  AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,          ##
+##  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF       ##
+##  THIS SOFTWARE.                                                       ##
+##                                                                       ##
+###########################################################################
+##                                                                       ##
+##  Author: Alan W Black (awb@cs.cmu.edu) Nov 2005                       ##
+##                                                                       ##
+###########################################################################
+##                                                                       ##
+##  Build a clustergen voice (sort of HMM-generation synthesis).         ##
+##                                                                       ##
+##  With no arguments is does (mostly) the right thing                   ##
+##                                                                       ##
+##  Its assumes there is already a labeled voice with a set of           ##
+##  utterances.  It naively believes it was labeled with ehmm and the    ##
+##  state names are available from that (and voicing information)        ##
+##                                                                       ##
+##  Does deltas by default (and later mlpg)                              ##
+##                                                                       ##
+###########################################################################
+
+LANG=C; export LANG
+
+if [ ! "$ESTDIR" ]
+then
+   echo "environment variable ESTDIR is unset"
+   echo "set it to your local speech tools directory e.g."
+   echo '   bash$ export ESTDIR=/home/awb/projects/speech_tools/'
+   echo or
+   echo '   csh% setenv ESTDIR /home/awb/projects/speech_tools/'
+   exit 1
+fi
+
+if [ ! "$FESTVOXDIR" ]
+then
+   echo "environment variable FESTVOXDIR is unset"
+   echo "set it to your local festvox directory e.g."
+   echo '   bash$ export FESTVOXDIR=/home/awb/projects/festvox/'
+   echo or
+   echo '   csh% setenv FESTVOXDIR /home/awb/projects/festvox/'
+   exit 1
+fi
+
+if [ "$SIODHEAPSIZE" = "" ]
+then
+   SIODHEAPSIZE=20000000
+   export SIODHEAPSIZE
+fi
+HEAPSIZE=$SIODHEAPSIZE
+
+. etc/voice.defs
+
+if [ "$CLUSTERGENDIR" = "" ]
+then
+    export CLUSTERGENDIR=$FESTVOXDIR/src/clustergen
+fi
+
+
+if [ $1 = "unitselection" ]
+then
+
+   # Make the  destination directory
+   mkdir -p mcep_deltas_replaced mcep_deltas_replaced_ascii
+
+   # Load the indic spectrum
+   CG_FULL=cg_tmp_$$ 
+   CG_INDIC=cg_tmp_$$
+   for file in mcep_deltas/src*
+   do
+     echo "Accumulating " $file
+     ch_track ${file} -otype ascii -o ${CG_INDIC}.mcepa 
+     cat ${CG_INDIC}.mcepa >> ${CG_FULL}.mcep.src
+   done
+   # Loop over the arctic files
+   for file in mcep_deltas/tgt*
+   do
+     echo "Processing " $file
+     fname=$($file)
+     ch_track $file -otype ascii ${CG_INDIC}.mcep.tgt
+     python bin/replace_frames_unitselection.py ${CG_INDIC}.mcep.tgt ${CG_FULL}.mcep.src mcep_deltas_replaced_ascii/${fname}.mcep
+     ch_track mcep_deltas_replaced_ascii/${fname}.mcep -s 0.005 -otype est_binary -o mcep_deltas_replaced/${fname}.mcep
+     rm -f ${CG_INDIC}_*
+   done
+   rm -f ${CG_FULL}_*
+fi
+
+if [ $1 = "kdtree" ]
+then
+
+   ORDER=24
+
+   # Make the  destination directory
+   mkdir -p mcep_deltas_replaced mcep_deltas_replaced_ascii str_replaced_ascii str_replaced
+
+   # Load the indic spectrum
+   CG_FULL=cg_tmp_$$ 
+   CG_INDIC=cg_tmp_$$
+   for file in mcep_deltas/tel_0*
+   do
+     echo "Accumulating " $file
+     fname=$(basename "$file" .mcep)
+     ch_track ${file} -otype ascii -o ${CG_INDIC}.mcepa 
+     cat ${CG_INDIC}.mcepa >> ${CG_FULL}.mcep.src
+     cat str/${fname}.str >> ${CG_FULL}.str.full
+   done
+
+   # Loop over the arctic files
+   for file in test/test/arctic*.mcep
+   do
+     echo "Processing " $file
+     fname=$(basename "$file" .mcep)
+
+     # Get the deltas
+     ch_track $file | cut -d ' ' -f 2- | $SPTKDIR/bin/x2x +af > $CG_INDIC.mcep.sptkformat    
+     $SPTKDIR/bin/delta -m 24 -d -0.5 0.0 0.5 < $CG_INDIC.mcep.sptkformat | $SPTKDIR/bin/x2x +fa50 > $CG_INDIC.ascii.mcep.tgt
+     echo "Got the deltas in " $CG_INDIC.ascii.mcep.tgt
+     python bin/replace_frames_kdtree.py ${CG_INDIC}.ascii.mcep.tgt ${CG_FULL}.str.full ${CG_FULL}.mcep.src mcep_deltas_replaced_ascii/${fname}.mcep str_replaced/${fname}.str
+     ch_track mcep_deltas_replaced_ascii/${fname}.mcep -s 0.005 -otype est_binary -o mcep_deltas_replaced/${fname}.mcep
+     echo "Finished " $fname
+     rm -f ${CG_INDIC}_*
+   done
+   rm -f ${CG_FULL}_* ${CG_INDIC}_*
+fi
+
+
+if [ $1 = "kdtree_otherspeaker" ]
+then
+
+   ORDER=24
+
+   # Make the  destination directory
+   mkdir -p mcep_deltas_replaced mcep_deltas_replaced_ascii str_replaced_ascii str_replaced
+
+   # Load the indic spectrum
+   CG_FULL=cg_tmp_$$ 
+   CG_INDIC=cg_tmp_$$
+   for file in mcep_deltas/tel_0*
+   do
+     echo "Accumulating " $file
+     fname=$(basename "$file" .mcep)
+     ch_track ${file} -otype ascii -o ${CG_INDIC}.mcepa 
+     cat ${CG_INDIC}.mcepa >> ${CG_FULL}.mcep.src
+     cat str/${fname}.str >> ${CG_FULL}.str.full
+   done
+
+   # Loop over the arctic files
+   for file in mcep_deltas_arcticotherspeaker/arctic_*.mcep
+   do
+     echo "Processing " $file
+     fname=$(basename "$file" .mcep)
+
+     # Get the deltas
+     #ch_track $file | cut -d ' ' -f 2- | $SPTKDIR/bin/x2x +af > $CG_INDIC.mcep.sptkformat    
+     #$SPTKDIR/bin/delta -m 24 -d -0.5 0.0 0.5 < $CG_INDIC.mcep.sptkformat | $SPTKDIR/bin/x2x +fa50 > $CG_INDIC.ascii.mcep.tgt
+     ch_track $file  > $CG_INDIC.ascii.mcep.tgt
+     echo "Got the deltas in " $CG_INDIC.ascii.mcep.tgt
+     python bin/replace_frames_kdtree.py ${CG_INDIC}.ascii.mcep.tgt ${CG_FULL}.str.full ${CG_FULL}.mcep.src mcep_deltas_replaced_ascii/${fname}.mcep str_replaced/${fname}.str
+     ch_track mcep_deltas_replaced_ascii/${fname}.mcep -s 0.005 -otype est_binary -o mcep_deltas_replaced/${fname}.mcep
+     cp str_replaced/${fname}.str str/${fname}.mcep
+     echo "Finished " $fname
+     rm -f ${CG_INDIC}_*
+   done
+   rm -f ${CG_FULL}_* ${CG_INDIC}_*
+fi
+
+
+
